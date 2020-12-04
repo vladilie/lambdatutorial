@@ -1,0 +1,7 @@
+node_modules
+
+setup.sh
+.aws-sam
+.idea
+localhost.crt
+localhost.key
