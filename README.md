@@ -135,8 +135,10 @@ Next, you can use the AWS Serverless Application Repository to deploy ready-to-u
 
 #Testing
 For SSL: 
-
+<br>
 mkdir cert
+
+<br>
 openssl req -x509 
   -out cert\localhost.crt 
   -keyout cert\localhost.key \
@@ -153,7 +155,7 @@ docker run -d \
     -e TLS_KEY=cert/localhost.key \
     halverneus/static-file-server:latest 
  
-Then you can access http://localhost:8300/test.csv
+Then you can access https://localhost:8300/test.csv
 
 For ftp will run a server in docker to be able to serve the ftp file: 
 (One needs to run this in the root of the lambdatutorial project)

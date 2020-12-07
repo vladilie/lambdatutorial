@@ -42,12 +42,21 @@ Resources:
           Properties:
             Schedule: cron(0 * * * ? *)
       MemorySize: 128
-      Timeout: 100
+      Timeout: 30
       Environment:
         Variables:
           HTTPS_URL:
           VALIDATE_CERTIFICATES: 1 # this is 0 only for debug
-          BUCKET_NAME: test_bucket
+          BUCKET_NAME: test-tutorial-lambda-december-2020
+      Policies:
+        - AWSLambdaExecute
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - s3:PutObject
+                - s3:PutObjectACL
+              Resource: 'arn:aws:s3:::test-tutorial-lambda-december-2020/*'
   # This is the Lambda function definition associated with the source code: sqs-payload-logger.js. For all available properties, see
   # https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
   FTPsScheduledEventLogger:
@@ -65,7 +74,7 @@ Resources:
           Properties:
             Schedule: cron(0 * * * ? *)
       MemorySize: 128
-      Timeout: 100
+      Timeout: 30
       Environment:
         Variables:
           SFTP_HOST:
@@ -73,4 +82,13 @@ Resources:
           SFTP_USER:
           SFTP_PASSWORD:
           SFTP_FILE_PATH:
-          BUCKET_NAME: test_bucket
+          BUCKET_NAME: test-tutorial-lambda-december-2020
+      Policies:
+        - AWSLambdaExecute
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - s3:PutObject
+                - s3:PutObjectACL
+              Resource: 'arn:aws:s3:::test-tutorial-lambda-december-2020/*'

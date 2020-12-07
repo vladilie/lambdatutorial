@@ -1,4 +1,6 @@
-const https = require('https')
+const https = require('https');
+const AWS = require('aws-sdk');
+let s3 = new AWS.S3({region: 'eu-west-2'});
 
 exports.httpsScheduledEventLoggerHandler = async function(event) {
     console.log('A Test')
@@ -12,11 +14,19 @@ exports.httpsScheduledEventLoggerHandler = async function(event) {
                 console.log('statusCode:', res.statusCode);
                 console.log('headers:', res.headers);
 
-                res.on('data', (d) => {
-                    process.stdout.write(d);
-                    resolve(res.statusCode)
-                });
+                if (200 == res.statusCode) {
+                    s3.upload({
+                        Body: res,
+                        Bucket: process.env.BUCKET_NAME,
+                        Key: "test.csv",
+                        ACL: "public-read",
+                        ContentType: "application/json"
+                    });
+                }
 
+            }).on('end', () => {
+                console.log("http done");
+                resolve(200)
             }).on('error', (e) => {
                 console.error(e);
                 reject(e)
