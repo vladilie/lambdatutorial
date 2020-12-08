@@ -42,7 +42,7 @@ Resources:
           Properties:
             Schedule: cron(0 * * * ? *)
       MemorySize: 128
-      Timeout: 30
+      Timeout: 100
       Environment:
         Variables:
           HTTPS_URL:

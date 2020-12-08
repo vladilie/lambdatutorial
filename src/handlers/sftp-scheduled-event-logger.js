@@ -29,8 +29,7 @@ exports.sftpScheduledEventLoggerHandler = async function (event) {
                         Bucket: process.env.BUCKET_NAME,
                         Key: process.env.SFTP_FILE_PATH,
                         Body: s3_pass,
-                        ACL: "public-read",
-                        ContentType: "application/json"
+                        ACL: "public-read"
                     }).promise()
             })
             .then(() => {

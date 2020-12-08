@@ -20,8 +20,11 @@ exports.httpsScheduledEventLoggerHandler = async function(event) {
                         Bucket: process.env.BUCKET_NAME,
                         Key: "test.csv",
                         ACL: "public-read",
-                        ContentType: "application/json"
+                        CacheControl: "5184000"
+                    }, function (err, data) {  //2 months
+                        console.log(err,data);
                     });
+
                 }
 
             }).on('end', () => {
