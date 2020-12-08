@@ -12,7 +12,7 @@ let sftp_config = {
     password: process.env.SFTP_PASSWORD
 }
 
-exports.ftpsScheduledEventLoggerHandler = async function (event) {
+exports.sftpScheduledEventLoggerHandler = async function (event) {
     const s3_pass = new stream.PassThrough();
 
     return new Promise((resolve, reject) => {
