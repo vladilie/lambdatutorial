@@ -5,3 +5,4 @@ setup.sh
 .idea
 localhost.crt
 localhost.key
+env.json

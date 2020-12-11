@@ -21,10 +21,9 @@ exports.httpsScheduledEventLoggerHandler = async function(event) {
                         Key: "test.csv",
                         ACL: "public-read",
                         CacheControl: "5184000"
-                    }, function (err, data) {  //2 months
+                    }, function (err, data) {
                         console.log(err,data);
                     });
-
                 }
 
             }).on('end', () => {
